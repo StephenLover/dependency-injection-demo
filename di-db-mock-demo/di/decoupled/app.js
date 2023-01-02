@@ -1,4 +1,5 @@
 import express from 'express';
+import { getUser, createUser } from './mysql-db';
 
 // starter
 const app = express()
@@ -9,12 +10,12 @@ app.post('/users', async (req, res) => {
   const { username, password } = req.body
 
   try {
-    const user = await database.getUser(username)
+    const user = await getUser(username)
     if (user) {
       res.status(400).send({ error: "username already taken" })
       return
     }
-    const userId = await database.createUser(username, password)
+    const userId = await createUser(username, password)
     res.send({ userId })
   } catch (error) {
     res.sendStatus(500)
@@ -22,32 +23,59 @@ app.post('/users', async (req, res) => {
   }
 })
 
-// DI
-const makeApp = (database) => {
-  const app = express()
+// const makeApp = (database) => {
+//   const app = express()
 
-  app.use(express.json())
+//   app.use(express.json())
 
-  app.post('/users', async (req, res) => {
-    const { username, password } = req.body
+//   app.post('/users', async (req, res) => {
+//     const { username, password } = req.body
 
-    try {
-      const user = await database.getUser(username)
-      if (user) {
-        res.status(400).send({ error: "username already taken" })
-        return
-      }
-      const userId = await database.createUser(username, password)
-      res.send({ userId })
-    } catch (error) {
-      res.sendStatus(500)
-      return
-    }
-  })
+//     try {
+//       const user = await database.getUser(username)
+//       if (user) {
+//         res.status(400).send({ error: "username already taken" })
+//         return
+//       }
+//       const userId = await database.createUser(username, password)
+//       res.send({ userId })
+//     } catch (error) {
+//       res.sendStatus(500)
+//       return
+//     }
+//   })
+// }
+
+// export {
+//   makeApp
+// }
+
+// // DI
+// const makeApp = (database) => {
+//   const app = express()
+
+//   app.use(express.json())
+
+//   app.post('/users', async (req, res) => {
+//     const { username, password } = req.body
+
+//     try {
+//       const user = await database.getUser(username)
+//       if (user) {
+//         res.status(400).send({ error: "username already taken" })
+//         return
+//       }
+//       const userId = await database.createUser(username, password)
+//       res.send({ userId })
+//     } catch (error) {
+//       res.sendStatus(500)
+//       return
+//     }
+//   })
   
-  return app
-}
+//   return app
+// }
 
-export {
-  makeApp
-}
+// export {
+//   makeApp
+// }

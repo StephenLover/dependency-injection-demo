@@ -2,6 +2,11 @@ import request from 'supertest'
 import makeApp from './app.js'
 import { jest } from '@jest/globals'
 
+// function mockCreateUser() {
+//   const fakeUserId = 123;
+//   return fakeUserId;
+// }
+
 const createUser = jest.fn()
 const getUser = jest.fn()
 

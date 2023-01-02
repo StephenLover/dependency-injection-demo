@@ -4,6 +4,7 @@ export default function (database) {
   const app = express()
 
   app.use(express.json())
+  
   app.post('/users', async (req, res) => {
     const { password, username } = req.body
     if (!password || !username) {

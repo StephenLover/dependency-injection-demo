@@ -2,9 +2,9 @@ import express from 'express';
 import mysql from 'mysql2'
 
 const connection = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  database : 'some_database'
+  host: 'localhost',
+  user: 'root',
+  database: 'some_database'
 })
 
 const app = express()
@@ -31,14 +31,14 @@ app.post('/users', async (req, res) => {
       return
     }
 
-    // otherwise, use INSERT syntax to signup for user
+    // otherwise, use INSERT syntax to signup for that user
     const { insertId } = await connection.promise().query(
       `INSERT INTO users (username, password) 
         VALUES (?, ?)`,
       [username, password]
     )
 
-    // after it succeed, send it back to client
+    // after it succeed, send the new userId back to client
     res.send({ userId: insertId })
   } catch (error) {
     // simple error handling

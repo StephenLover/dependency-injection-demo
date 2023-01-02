@@ -1,9 +1,9 @@
-const getUser = () => {
-  console.log('getUser from dynamoDB')
+const getUser = (username) => {
+  return documentClient.get({ username });
 }
 
-const createUser = () => {
-  console.log('createUser in dynamoDB')
+const createUser = (username, password) => {
+  return documentClient.put({ username, password });
 }
 
 export {
