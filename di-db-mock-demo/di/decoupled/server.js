@@ -3,7 +3,7 @@
 import mysqlDB from './mysql-db.js'
 import { makeApp } from './app';
 import { dynamoDb } from './dynamodb';
-// import { otherDB } from './otherDB';
+import { otherDB } from './otherDB';
 
 // inject mysql db to app maker
 const app1 = makeApp(mysqlDB)

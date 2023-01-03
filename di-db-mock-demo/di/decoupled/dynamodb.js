@@ -1,3 +1,5 @@
+import documentClient from 'dynamodb';
+
 const getUser = (username) => {
   return documentClient.get({ username });
 }

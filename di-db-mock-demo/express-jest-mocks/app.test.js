@@ -2,7 +2,7 @@ import request from 'supertest'
 import makeApp from './app.js'
 import { jest } from '@jest/globals'
 
-// function mockCreateUser() {
+// function mockGetUser() {
 //   const fakeUserId = 123;
 //   return fakeUserId;
 // }
